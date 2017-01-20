@@ -4,3 +4,7 @@ const vendors = [
 	  'react',
 	  'react-dom'		
 ];
+
+module.exports = {
+	
+}
