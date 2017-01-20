@@ -6,7 +6,10 @@ var dirVars = require('./base/dir-vars.config.js');
 var pageArr = require('./base/page-entries.config.js');
 
 var configPlugins = [
-
+    new webpack.ProvidePlugin({
+        React: 'react',
+        ReactDOM: 'react-dom'
+    }),
     new webpack.optimize.CommonsChunkPlugin({
         name: "commons",
         filename: "[name]/commons.js",

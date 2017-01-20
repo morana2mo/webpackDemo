@@ -1,5 +1,3 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
 import Hellos from "./main";
 class Hello extends React.Component {
   render() {
