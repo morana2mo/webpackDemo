@@ -1,11 +1,11 @@
-import Hellos from "./main";
+import Head from "../../../modules/header";
+import  "./style.less";
 class Hello extends React.Component {
   render() {
 
     return(
     	<div>
-    	 	<h1>Hello</h1>
-    	 	<Hellos />
+    	 	<Head/>
     	</div>
     )
   }
