@@ -1,13 +1,17 @@
+import Dropdown from "../components/dropdown";
 import  "./header.less";
-class Head extends React.Component {
 
-  render() {
-    return (
-      <header className="header">
-        1111
-      </header>
-    );
-  }
+const data = ['个人主页','退出登录'];
+const login = ['登录','注册'];
+
+class Head extends React.Component {
+  	render() {
+	    return (
+	      <header className="header">
+	        <Dropdown results={data} />
+	      </header>
+	    );
+	}
 
 }
 

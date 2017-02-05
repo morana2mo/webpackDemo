@@ -33,6 +33,7 @@ var main = '../src/pages/course/index/index.jsx';
     hash: true, //为静态资源生成hash值，
     chunks: [page, 'commons/commons'],
 
+
   });
   configPlugins.push(htmlPlugin);
 });
