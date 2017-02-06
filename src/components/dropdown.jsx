@@ -1,8 +1,12 @@
 import  "./dropdown.less";
+import Li from  "./Li";
 class Dropdown extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { status: props.isOpen };
+    this.state = { 
+      status: props.isOpen,
+      child:props.children, 
+    };
   }
   tick() {
   	let statuss =  this.state.status == 'dropdown' ? 'dropdown on' : 'dropdown'; 
@@ -12,11 +16,9 @@ class Dropdown extends React.Component {
     return (
     	<div className = {this.state.status} onClick={this.tick.bind(this)}>
     		<img src={require('../assets/img/img.jpg')} className="avater-sm"/>
-    		<ul className="dropdown-menu">
-           {this.props.results.map((result,index)=>{
-              return <li key={index} data={result} ><a href="javascript:;">{result}</a></li>;
-          })}
-    		</ul>
+       <ul className="dropdown-menu">
+         {child}
+       </ul>
     	</div>
     );
   }
@@ -26,7 +28,8 @@ Dropdown.defaultProps = {
 	isOpen:'dropdown',
 }
 Dropdown.propTypes = {
-	isOpen:React.PropTypes.string.isRequired
+	isOpen:React.PropTypes.string.isRequired,
+  children:React.PropTypes.node,
 }
 
 export default Dropdown;

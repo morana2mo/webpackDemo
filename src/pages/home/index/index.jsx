@@ -5,7 +5,7 @@ class Hello extends React.Component {
 
     return(
     	<div>
-    	 	<Head/>
+    	 	<Head />
     	</div>
     )
   }
