@@ -1,27 +1,32 @@
 import Dropdown from "../components/dropdown";
 import  "./header.less";
 
-const data = [['登录','javascript:;'],['退出','javascript:;']];
-
 class Head extends React.Component {
 	constructor(props) {
 	    super(props);
 	    this.state = {
 	    	status: props.isLogin,
-	    	item:props.list,
 	    };
 	}
+	changeState(event){
+		this.setState({status: !this.state.status});
+	}
   	render() {
-  		let dropdown;
-
+  		let dropdownList;
   		if(!!this.state.status){
-  			dropdown = <Dropdown list={data}/>
+  			dropdownList = 	<Dropdown>
+					       	<a href="javascript:;" onClick={this.changeState.bind(this)}>登录</a>
+					       	<a href="javascript:;">注册</a>
+					    </Dropdown>
   		}else{
-  			dropdown = <Dropdown list={data} />
+  			dropdownList = 	<Dropdown>
+					       	<a href="javascript:;">主页</a>
+					       	<a href="javascript:;" onClick={this.changeState.bind(this)}>退出</a>
+					    </Dropdown>
   		}
 	    return (
 	      <header className="header">
-	       	{dropdown}
+	      	{dropdownList}
 	      </header>
 	    );
 	}
@@ -30,11 +35,9 @@ class Head extends React.Component {
 
 Head.defaultProps = {
 	isLogin:0,
-	list:[],
 }
 Head.propTypes = {
 	isLogin:React.PropTypes.number,
-	list:React.PropTypes.array.isRequired,
 }
 
 export default Head;

@@ -19,6 +19,9 @@
   color: rgba(0, 0, 0, 0.65);
   text-decoration: none;
 }
+.dropdown .dropdown-menu a:hover {
+  background-color: #ecf6fd;
+}
 .dropdown li {
   list-style-type: none;
 }

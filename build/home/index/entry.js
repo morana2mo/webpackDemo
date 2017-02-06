@@ -21507,8 +21507,6 @@ webpackJsonp([0,1],[
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	var data = [['登录', 'javascript:;'], ['退出', 'javascript:;']];
-
 	var Head = function (_React$Component) {
 		_inherits(Head, _React$Component);
 
@@ -21518,26 +21516,55 @@ webpackJsonp([0,1],[
 			var _this = _possibleConstructorReturn(this, (Head.__proto__ || Object.getPrototypeOf(Head)).call(this, props));
 
 			_this.state = {
-				status: props.isLogin,
-				item: props.list
+				status: props.isLogin
 			};
 			return _this;
 		}
 
 		_createClass(Head, [{
+			key: "changeState",
+			value: function changeState(event) {
+				this.setState({ status: !this.state.status });
+			}
+		}, {
 			key: "render",
 			value: function render() {
-				var dropdown = void 0;
-
+				var dropdownList = void 0;
 				if (!!this.state.status) {
-					dropdown = React.createElement(_dropdown2.default, { list: data });
+					dropdownList = React.createElement(
+						_dropdown2.default,
+						null,
+						React.createElement(
+							"a",
+							{ href: "javascript:;", onClick: this.changeState.bind(this) },
+							"\u767B\u5F55"
+						),
+						React.createElement(
+							"a",
+							{ href: "javascript:;" },
+							"\u6CE8\u518C"
+						)
+					);
 				} else {
-					dropdown = React.createElement(_dropdown2.default, { list: data });
+					dropdownList = React.createElement(
+						_dropdown2.default,
+						null,
+						React.createElement(
+							"a",
+							{ href: "javascript:;" },
+							"\u4E3B\u9875"
+						),
+						React.createElement(
+							"a",
+							{ href: "javascript:;", onClick: this.changeState.bind(this) },
+							"\u9000\u51FA"
+						)
+					);
 				}
 				return React.createElement(
 					"header",
 					{ className: "header" },
-					dropdown
+					dropdownList
 				);
 			}
 		}]);
@@ -21546,12 +21573,10 @@ webpackJsonp([0,1],[
 	}(React.Component);
 
 	Head.defaultProps = {
-		isLogin: 0,
-		list: []
+		isLogin: 0
 	};
 	Head.propTypes = {
-		isLogin: React.PropTypes.number,
-		list: React.PropTypes.array.isRequired
+		isLogin: React.PropTypes.number
 	};
 
 	exports.default = Head;
@@ -21561,7 +21586,7 @@ webpackJsonp([0,1],[
 /* 179 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/* WEBPACK VAR INJECTION */(function(React) {"use strict";
+	/* WEBPACK VAR INJECTION */(function(React) {'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -21570,12 +21595,6 @@ webpackJsonp([0,1],[
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 	__webpack_require__(180);
-
-	var _Li = __webpack_require__(190);
-
-	var _Li2 = _interopRequireDefault(_Li);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -21592,29 +21611,49 @@ webpackJsonp([0,1],[
 	    var _this = _possibleConstructorReturn(this, (Dropdown.__proto__ || Object.getPrototypeOf(Dropdown)).call(this, props));
 
 	    _this.state = {
-	      status: props.isOpen,
-	      child: props.children
+	      status: props.isOpen
 	    };
 	    return _this;
 	  }
 
 	  _createClass(Dropdown, [{
-	    key: "tick",
-	    value: function tick() {
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      document.onclick = this.hide.bind(this);
+	    }
+	  }, {
+	    key: 'tick',
+	    value: function tick(e) {
+	      e.nativeEvent.stopImmediatePropagation();
 	      var statuss = this.state.status == 'dropdown' ? 'dropdown on' : 'dropdown';
 	      this.setState({ status: statuss });
 	    }
 	  }, {
-	    key: "render",
+	    key: 'hide',
+	    value: function hide() {
+	      var statuss = 'dropdown';
+	      if (this.state.status == 'dropdown on') {
+	        this.setState({ status: statuss });
+	      }
+	    }
+	  }, {
+	    key: 'render',
 	    value: function render() {
+
 	      return React.createElement(
-	        "div",
+	        'div',
 	        { className: this.state.status, onClick: this.tick.bind(this) },
-	        React.createElement("img", { src: __webpack_require__(185), className: "avater-sm" }),
+	        React.createElement('img', { src: __webpack_require__(185), className: 'avater-sm' }),
 	        React.createElement(
-	          "ul",
-	          { className: "dropdown-menu" },
-	          child
+	          'ul',
+	          { className: 'dropdown-menu' },
+	          React.Children.map(this.props.children, function (child) {
+	            return React.createElement(
+	              'li',
+	              null,
+	              child
+	            );
+	          })
 	        )
 	      );
 	    }
@@ -21627,8 +21666,7 @@ webpackJsonp([0,1],[
 	  isOpen: 'dropdown'
 	};
 	Dropdown.propTypes = {
-	  isOpen: React.PropTypes.string.isRequired,
-	  children: React.PropTypes.node
+	  isOpen: React.PropTypes.string.isRequired
 	};
 
 	exports.default = Dropdown;
@@ -21662,64 +21700,6 @@ webpackJsonp([0,1],[
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
-
-/***/ },
-/* 189 */,
-/* 190 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/* WEBPACK VAR INJECTION */(function(React) {'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var Li = function (_React$Component) {
-	  _inherits(Li, _React$Component);
-
-	  function Li(props) {
-	    _classCallCheck(this, Li);
-
-	    return _possibleConstructorReturn(this, (Li.__proto__ || Object.getPrototypeOf(Li)).call(this, props));
-	  }
-
-	  _createClass(Li, [{
-	    key: 'render',
-	    value: function render() {
-	      return React.createElement(
-	        'li',
-	        null,
-	        React.createElement(
-	          'a',
-	          { href: this.props.href },
-	          this.props.val
-	        )
-	      );
-	    }
-	  }]);
-
-	  return Li;
-	}(React.Component);
-
-	Li.defaultProps = {
-	  href: 'javascript:;',
-	  val: ''
-	};
-	Li.propTypes = {
-	  href: React.PropTypes.string.isRequired,
-	  val: React.PropTypes.string.isRequired
-	};
-
-	exports.default = Li;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }
 ]);
