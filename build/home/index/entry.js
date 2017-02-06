@@ -21625,15 +21625,13 @@ webpackJsonp([0,1],[
 	    key: 'tick',
 	    value: function tick(e) {
 	      e.nativeEvent.stopImmediatePropagation();
-	      var statuss = this.state.status == 'dropdown' ? 'dropdown on' : 'dropdown';
-	      this.setState({ status: statuss });
+	      this.setState({ status: !this.state.status });
 	    }
 	  }, {
 	    key: 'hide',
 	    value: function hide() {
-	      var statuss = 'dropdown';
-	      if (this.state.status == 'dropdown on') {
-	        this.setState({ status: statuss });
+	      if (this.state.status) {
+	        this.setState({ status: !this.state.status });
 	      }
 	    }
 	  }, {
@@ -21642,7 +21640,8 @@ webpackJsonp([0,1],[
 
 	      return React.createElement(
 	        'div',
-	        { className: this.state.status, onClick: this.tick.bind(this) },
+	        { className: this.state.status ? 'dropdown on' : 'dropdown',
+	          onClick: this.tick.bind(this) },
 	        React.createElement('img', { src: __webpack_require__(185), className: 'avater-sm' }),
 	        React.createElement(
 	          'ul',
@@ -21663,10 +21662,10 @@ webpackJsonp([0,1],[
 	}(React.Component);
 
 	Dropdown.defaultProps = {
-	  isOpen: 'dropdown'
+	  isOpen: false
 	};
 	Dropdown.propTypes = {
-	  isOpen: React.PropTypes.string.isRequired
+	  isOpen: React.PropTypes.bool.isRequired
 	};
 
 	exports.default = Dropdown;

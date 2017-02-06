@@ -12,20 +12,18 @@ class Dropdown extends React.Component {
   }
   tick(e) {
     e.nativeEvent.stopImmediatePropagation();
-  	let statuss =  this.state.status == 'dropdown' ? 'dropdown on' : 'dropdown'; 
-    this.setState({status: statuss});
+    this.setState({status:!this.state.status});
   }
-  
   hide(){
-    let statuss = 'dropdown'
-    if(this.state.status == 'dropdown on'){
-       this.setState({status: statuss});
+    if(this.state.status){
+      this.setState({status:!this.state.status});
     }
   }
   render() {
     
     return (
-    	<div className = {this.state.status} onClick={this.tick.bind(this)}>
+    	<div className = {this.state.status ? 'dropdown on' :'dropdown'}
+       onClick={this.tick.bind(this)}>
     		<img src={require('../assets/img/img.jpg')} className="avater-sm"/>
         <ul className="dropdown-menu">
             {React.Children.map(this.props.children, (child)=>{
@@ -39,10 +37,10 @@ class Dropdown extends React.Component {
 
 }
 Dropdown.defaultProps = {
-	isOpen:'dropdown',
+	isOpen:false,
 }
 Dropdown.propTypes = {
-	isOpen:React.PropTypes.string.isRequired,
+	isOpen:React.PropTypes.bool.isRequired,
 }
 
 export default Dropdown;
