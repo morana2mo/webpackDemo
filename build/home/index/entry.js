@@ -32,7 +32,6 @@ webpackJsonp([0,1],[
 	  _createClass(Hello, [{
 	    key: "render",
 	    value: function render() {
-
 	      return React.createElement(
 	        "div",
 	        null,

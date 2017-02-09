@@ -17,7 +17,7 @@ class Head extends React.Component {
   			dropdownList = 	<Dropdown>
 					       	<a href="javascript:;" onClick={this.changeState.bind(this)}>登录</a>
 					       	<a href="javascript:;">注册</a>
-					    </Dropdown>
+					    	</Dropdown>
   		}else{
   			dropdownList = 	<Dropdown>
 					       	<a href="javascript:;">主页</a>
