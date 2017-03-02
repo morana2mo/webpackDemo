@@ -21624,23 +21624,37 @@ webpackJsonp([0,1],[
 	    key: 'tick',
 	    value: function tick(e) {
 	      e.nativeEvent.stopImmediatePropagation();
-	      this.setState({ status: !this.state.status });
+	      this.changeState();
 	    }
 	  }, {
 	    key: 'hide',
 	    value: function hide() {
 	      if (this.state.status) {
-	        this.setState({ status: !this.state.status });
+	        this.changeState();
 	      }
+	    }
+	  }, {
+	    key: 'changeState',
+	    value: function changeState() {
+	      var _this2 = this;
+
+	      this.setState(function (prevState) {
+	        return {
+	          status: !_this2.state.status
+	        };
+	      });
 	    }
 	  }, {
 	    key: 'render',
 	    value: function render() {
+	      var _this3 = this;
 
 	      return React.createElement(
 	        'div',
 	        { className: this.state.status ? 'dropdown on' : 'dropdown',
-	          onClick: this.tick.bind(this) },
+	          onClick: function onClick(e) {
+	            return _this3.tick(e);
+	          } },
 	        React.createElement('img', { src: __webpack_require__(184), className: 'avater-sm' }),
 	        React.createElement(
 	          'ul',

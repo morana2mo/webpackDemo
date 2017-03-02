@@ -12,18 +12,23 @@ class Dropdown extends React.Component {
   }
   tick(e) {
     e.nativeEvent.stopImmediatePropagation();
-    this.setState({status:!this.state.status});
+    this.changeState();
   }
   hide(){
     if(this.state.status){
-      this.setState({status:!this.state.status});
+      this.changeState();
     }
+  }
+  changeState(){
+    this.setState(prevState => ({
+        status:!this.state.status
+    }))
   }
   render() {
     
     return (
     	<div className = {this.state.status ? 'dropdown on' :'dropdown'}
-       onClick={this.tick.bind(this)}>
+       onClick={(e)=>this.tick(e)}>
     		<img src={require('../assets/img/img.jpg')} className="avater-sm"/>
         <ul className="dropdown-menu">
             {React.Children.map(this.props.children, (child)=>{
